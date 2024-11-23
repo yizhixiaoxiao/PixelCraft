@@ -28,7 +28,7 @@ app.get('/', async (req, res) => {
         // 获取图像处理的大小参数
         let size = Number(req.query.size);
         if (isNaN(size)) {
-            size = 10;
+            size = 15;
         }
         if (size > 100) {
             console.error('大小参数超出范围');
