@@ -21,10 +21,15 @@ app.post('/api/messages', upload.none(), (req, res) => {
 
 // 处理 GET 请求，加载并处理图像
 app.get('/', async (req, res) => {
+    const setu = 'https://api.anosu.top/img?sort=setu&proxy=i.yuki.sh';
+    const r18 = 'https://moe.jitsu.top/img/?sort=r18&proxy=i.yuki.sh';
     try {
-        const img = await loadImage('https://api.anosu.top/img?sort=setu');
+        
+        const randomChoice = Math.random();
+        const selectedImageUrl = randomChoice < 0.5 ? setu : r18;
+        
+        const img = await loadImage(selectedImageUrl);
 
-        // 获取图像处理的大小参数，默认为 15
         let size = Number(req.query.size) || 1;
 
         if (size > 100) {
